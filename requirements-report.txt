@@ -1,0 +1,5 @@
+# Report generation. The generator also requires the fonts documented in README.md.
+reportlab>=4,<5
+
+# PDF inspection and link/text verification; not needed by the C++ matcher.
+pypdf>=5,<7
