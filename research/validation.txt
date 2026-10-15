@@ -1,0 +1,8 @@
+Optimized compilation: clang++ -std=c++17 -O2 -Wall -Wextra -Wpedantic
+Sanitized compilation: clang++ -std=c++17 -O1 -g -Wall -Wextra -Wpedantic -fsanitize=address,undefined -fno-omit-frame-pointer
+Both executions completed successfully, without compiler warnings or sanitizer diagnostics.
+3,822 team selections checked against independent exhaustive enumeration across 2,100 random queues.
+Local gap-loss certificate verified for every selected oracle team.
+Lambda zero exact team IDs and times verified on 300 random queues and 10 full experiment streams (3,200 matching ticks).
+Six-player illustration verified.
+Optimized and sanitized JSON results agree exactly.
