@@ -1,0 +1,24 @@
+build/
+tmp/
+*.o
+*.out
+*.dSYM/
+__pycache__/
+*.py[cod]
+.DS_Store
+.vscode/
+.github-staging/
+.env
+.env.*
+*.pem
+
+# Local revisions and generated submission archives.
+report/archive_*/
+report/build_report_v*.py
+output/archive/
+output/*.zip
+
+# Optional extension executables and sanitizer output.
+research/waiting_extension
+research/waiting_extension_sanitized
+research/waiting_extension_sanitized.json
