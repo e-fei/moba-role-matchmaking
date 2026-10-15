@@ -1,0 +1,2315 @@
+{
+  "schema_version": 1,
+  "source": {
+    "file": "experiment_results.json",
+    "sha256": "4e9a080a75b07ee7368c5f4ecdca977b7e4e3ca230ffc9603ea5302e3b17ec70",
+    "experiment": "Seeded role-constrained matchmaking comparison"
+  },
+  "conventions": {
+    "unit_of_replication": "One scenario-policy run with one seed; n = 5.",
+    "run_summary": "Arithmetic mean and sample SD (denominator n - 1) of the five run metrics; each run has equal weight.",
+    "uncertainty": "SD describes variation across these seeds. It is not a confidence interval, standard error, or significance test.",
+    "pairing": "Within a scenario, policies share seed and arrival workload. Delta is policy minus role_fifo for the same seed.",
+    "gap_delta": "A negative gap delta means smaller score differences.",
+    "wait_delta": "A negative matched-wait delta can reflect selection of who completes. Interpret with match rate, observed queue residence, and pending ages.",
+    "pending_age_summary": "Mean and oldest pending ages are summarized only over runs with pending players. No-pending runs have undefined pending age, although the source records mean pending age as zero.",
+    "pooled": "Preserved separately from the source. Pooled means weight waits by matched-player count and gaps by team count. A mean of five run p95 values is not the pooled p95.",
+    "precision": "Computed from recorded per-run summaries; source means are rounded to six decimal places. No unrecorded player-level observations are reconstructed.",
+    "observed_queue_time": "Matched waiting times plus pending ages at second 319, divided by all arrivals; truncated queue residence time for every arrival, not an estimate of eventual completed wait.",
+    "claims": "Descriptive synthetic experiment; no statistical-significance or population-generalization claims."
+  },
+  "workload": {
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "arrivals_per_run": 1000,
+    "arrivals_per_second": 5,
+    "first_arrival_second": 0,
+    "last_arrival_second": 199,
+    "last_matching_second": 319,
+    "drain_ticks": 120,
+    "score_min_inclusive": 1000,
+    "score_max_inclusive": 2000,
+    "balanced_role_counts": [
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "support_scarce_role_counts": [
+      225,
+      225,
+      225,
+      225,
+      100
+    ],
+    "role_order": [
+      "top",
+      "jun",
+      "mid",
+      "adc",
+      "sup"
+    ],
+    "schedule": "At each integer tick enqueue all five arrivals, then exhaust all feasible teams; no arrivals after second 199.",
+    "generator": "SplitMix64 initialized with each seed; unbiased rejection sampling for bounded integers; Fisher-Yates shuffle exact role populations first, then generate scores in arrival order. Reinitialize the generator per scenario and seed."
+  },
+  "policy_parameters": [
+    {
+      "name": "role_fifo",
+      "initial_band": null,
+      "growth_per_second": null,
+      "maximum_band": null
+    },
+    {
+      "name": "fixed_50",
+      "initial_band": 50,
+      "growth_per_second": 0.0,
+      "maximum_band": 1000000
+    },
+    {
+      "name": "adaptive_10",
+      "initial_band": 50,
+      "growth_per_second": 10.0,
+      "maximum_band": 1000000
+    },
+    {
+      "name": "adaptive_30",
+      "initial_band": 50,
+      "growth_per_second": 30.0,
+      "maximum_band": 1000000
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "balanced",
+      "policies": [
+        {
+          "policy": "role_fifo",
+          "raw_points": [
+            {
+              "seed": 1,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 7790,
+                "mean_matched_wait_seconds": 7.79,
+                "p95_matched_wait_seconds": 22,
+                "mean_team_pairwise_gap": 333.56,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 7.79,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 7975,
+                "mean_matched_wait_seconds": 7.975,
+                "p95_matched_wait_seconds": 20,
+                "mean_team_pairwise_gap": 330.813,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 7.975,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 6725,
+                "mean_matched_wait_seconds": 6.725,
+                "p95_matched_wait_seconds": 19,
+                "mean_team_pairwise_gap": 335.42,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 6.725,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 6245,
+                "mean_matched_wait_seconds": 6.245,
+                "p95_matched_wait_seconds": 15,
+                "mean_team_pairwise_gap": 343.279,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 6.245,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 4885,
+                "mean_matched_wait_seconds": 4.885,
+                "p95_matched_wait_seconds": 13,
+                "mean_team_pairwise_gap": 316.229,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 4.885,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": 6.724,
+              "sample_sd": 1.2562563432675673,
+              "min": 4.885,
+              "max": 7.975
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": 331.8602,
+              "sample_sd": 9.891682500970203,
+              "min": 316.229,
+              "max": 343.279
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 6.724,
+              "sample_sd": 1.2562563432675673,
+              "min": 4.885,
+              "max": 7.975
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 1.0,
+              "sample_sd": 0.0,
+              "min": 1.0,
+              "max": 1.0
+            },
+            "matched_players": {
+              "n": 5,
+              "mean": 1000,
+              "sample_sd": 0.0,
+              "min": 1000,
+              "max": 1000
+            },
+            "teams": {
+              "n": 5,
+              "mean": 200,
+              "sample_sd": 0.0,
+              "min": 200,
+              "max": 200
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 0,
+              "sample_sd": 0.0,
+              "min": 0,
+              "max": 0
+            },
+            "p95_matched_wait_seconds": {
+              "n": 5,
+              "mean": 17.8,
+              "sample_sd": 3.7013511046643495,
+              "min": 13,
+              "max": 22
+            },
+            "mean_pending_age_seconds": {
+              "n": 0,
+              "mean": null,
+              "sample_sd": null,
+              "min": null,
+              "max": null
+            },
+            "oldest_pending_age_seconds": {
+              "n": 0,
+              "mean": null,
+              "sample_sd": null,
+              "min": null,
+              "max": null
+            }
+          },
+          "pooled_metrics": {
+            "runs": 5,
+            "arrivals": 5000,
+            "teams": 1000,
+            "matched_players": 5000,
+            "match_rate": 1.0,
+            "matched_wait_sum_seconds": 33620,
+            "mean_matched_wait_seconds": 6.724,
+            "p95_matched_wait_seconds": 18,
+            "mean_team_pairwise_gap": 331.8602,
+            "pending_players": 0,
+            "pending_age_sum_seconds": 0,
+            "mean_pending_age_seconds": 0.0,
+            "observed_mean_queue_time_seconds": 6.724,
+            "oldest_pending_age_seconds": null,
+            "pending_by_role": {
+              "top": 0,
+              "jun": 0,
+              "mid": 0,
+              "adc": 0,
+              "sup": 0
+            }
+          }
+        },
+        {
+          "policy": "fixed_50",
+          "raw_points": [
+            {
+              "seed": 1,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 176,
+                "matched_players": 880,
+                "match_rate": 0.88,
+                "matched_wait_sum_seconds": 15447,
+                "mean_matched_wait_seconds": 17.553409,
+                "p95_matched_wait_seconds": 57,
+                "mean_team_pairwise_gap": 26.517045,
+                "pending_players": 120,
+                "pending_age_sum_seconds": 17823,
+                "mean_pending_age_seconds": 148.525,
+                "observed_mean_queue_time_seconds": 33.27,
+                "oldest_pending_age_seconds": 279,
+                "pending_by_role": {
+                  "top": 24,
+                  "jun": 24,
+                  "mid": 24,
+                  "adc": 24,
+                  "sup": 24
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 179,
+                "matched_players": 895,
+                "match_rate": 0.895,
+                "matched_wait_sum_seconds": 17579,
+                "mean_matched_wait_seconds": 19.641341,
+                "p95_matched_wait_seconds": 70,
+                "mean_team_pairwise_gap": 27.307263,
+                "pending_players": 105,
+                "pending_age_sum_seconds": 15356,
+                "mean_pending_age_seconds": 146.247619,
+                "observed_mean_queue_time_seconds": 32.935,
+                "oldest_pending_age_seconds": 214,
+                "pending_by_role": {
+                  "top": 21,
+                  "jun": 21,
+                  "mid": 21,
+                  "adc": 21,
+                  "sup": 21
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 169,
+                "matched_players": 845,
+                "match_rate": 0.845,
+                "matched_wait_sum_seconds": 16324,
+                "mean_matched_wait_seconds": 19.318343,
+                "p95_matched_wait_seconds": 74,
+                "mean_team_pairwise_gap": 27.298225,
+                "pending_players": 155,
+                "pending_age_sum_seconds": 23796,
+                "mean_pending_age_seconds": 153.522581,
+                "observed_mean_queue_time_seconds": 40.12,
+                "oldest_pending_age_seconds": 270,
+                "pending_by_role": {
+                  "top": 31,
+                  "jun": 31,
+                  "mid": 31,
+                  "adc": 31,
+                  "sup": 31
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 179,
+                "matched_players": 895,
+                "match_rate": 0.895,
+                "matched_wait_sum_seconds": 15823,
+                "mean_matched_wait_seconds": 17.67933,
+                "p95_matched_wait_seconds": 65,
+                "mean_team_pairwise_gap": 29.006704,
+                "pending_players": 105,
+                "pending_age_sum_seconds": 15757,
+                "mean_pending_age_seconds": 150.066667,
+                "observed_mean_queue_time_seconds": 31.58,
+                "oldest_pending_age_seconds": 242,
+                "pending_by_role": {
+                  "top": 21,
+                  "jun": 21,
+                  "mid": 21,
+                  "adc": 21,
+                  "sup": 21
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 179,
+                "matched_players": 895,
+                "match_rate": 0.895,
+                "matched_wait_sum_seconds": 14245,
+                "mean_matched_wait_seconds": 15.916201,
+                "p95_matched_wait_seconds": 59,
+                "mean_team_pairwise_gap": 27.06257,
+                "pending_players": 105,
+                "pending_age_sum_seconds": 15890,
+                "mean_pending_age_seconds": 151.333333,
+                "observed_mean_queue_time_seconds": 30.135,
+                "oldest_pending_age_seconds": 268,
+                "pending_by_role": {
+                  "top": 21,
+                  "jun": 21,
+                  "mid": 21,
+                  "adc": 21,
+                  "sup": 21
+                }
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": 18.0217248,
+              "sample_sd": 1.5061673007867356,
+              "min": 15.916201,
+              "max": 19.641341
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": 27.438361399999998,
+              "sample_sd": 0.9336175069702257,
+              "min": 26.517045,
+              "max": 29.006704
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 33.608000000000004,
+              "sample_sd": 3.845381320493455,
+              "min": 30.135,
+              "max": 40.12
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 0.882,
+              "sample_sd": 0.021679483388678818,
+              "min": 0.845,
+              "max": 0.895
+            },
+            "matched_players": {
+              "n": 5,
+              "mean": 882,
+              "sample_sd": 21.6794833886788,
+              "min": 845,
+              "max": 895
+            },
+            "teams": {
+              "n": 5,
+              "mean": 176.4,
+              "sample_sd": 4.33589667773576,
+              "min": 169,
+              "max": 179
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 118,
+              "sample_sd": 21.6794833886788,
+              "min": 105,
+              "max": 155
+            },
+            "p95_matched_wait_seconds": {
+              "n": 5,
+              "mean": 65,
+              "sample_sd": 7.176350047203662,
+              "min": 57,
+              "max": 74
+            },
+            "mean_pending_age_seconds": {
+              "n": 5,
+              "mean": 149.93904,
+              "sample_sd": 2.7580883706156034,
+              "min": 146.247619,
+              "max": 153.522581
+            },
+            "oldest_pending_age_seconds": {
+              "n": 5,
+              "mean": 254.6,
+              "sample_sd": 26.548069609672186,
+              "min": 214,
+              "max": 279
+            }
+          },
+          "pooled_metrics": {
+            "runs": 5,
+            "arrivals": 5000,
+            "teams": 882,
+            "matched_players": 4410,
+            "match_rate": 0.882,
+            "matched_wait_sum_seconds": 79418,
+            "mean_matched_wait_seconds": 18.008617,
+            "p95_matched_wait_seconds": 65,
+            "mean_team_pairwise_gap": 27.443084,
+            "pending_players": 590,
+            "pending_age_sum_seconds": 88622,
+            "mean_pending_age_seconds": 150.20678,
+            "observed_mean_queue_time_seconds": 33.608,
+            "oldest_pending_age_seconds": 279,
+            "pending_by_role": {
+              "top": 118,
+              "jun": 118,
+              "mid": 118,
+              "adc": 118,
+              "sup": 118
+            }
+          }
+        },
+        {
+          "policy": "adaptive_10",
+          "raw_points": [
+            {
+              "seed": 1,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 9255,
+                "mean_matched_wait_seconds": 9.255,
+                "p95_matched_wait_seconds": 31,
+                "mean_team_pairwise_gap": 101.758,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 9.255,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 10310,
+                "mean_matched_wait_seconds": 10.31,
+                "p95_matched_wait_seconds": 31,
+                "mean_team_pairwise_gap": 108.25,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 10.31,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 10035,
+                "mean_matched_wait_seconds": 10.035,
+                "p95_matched_wait_seconds": 32,
+                "mean_team_pairwise_gap": 122.384,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 10.035,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 8555,
+                "mean_matched_wait_seconds": 8.555,
+                "p95_matched_wait_seconds": 26,
+                "mean_team_pairwise_gap": 101.352,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 8.555,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 7450,
+                "mean_matched_wait_seconds": 7.45,
+                "p95_matched_wait_seconds": 23,
+                "mean_team_pairwise_gap": 89.728,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 7.45,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": 9.121,
+              "sample_sd": 1.1597057816532608,
+              "min": 7.45,
+              "max": 10.31
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": 104.6944,
+              "sample_sd": 11.930543273464124,
+              "min": 89.728,
+              "max": 122.384
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 9.121,
+              "sample_sd": 1.1597057816532608,
+              "min": 7.45,
+              "max": 10.31
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 1.0,
+              "sample_sd": 0.0,
+              "min": 1.0,
+              "max": 1.0
+            },
+            "matched_players": {
+              "n": 5,
+              "mean": 1000,
+              "sample_sd": 0.0,
+              "min": 1000,
+              "max": 1000
+            },
+            "teams": {
+              "n": 5,
+              "mean": 200,
+              "sample_sd": 0.0,
+              "min": 200,
+              "max": 200
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 0,
+              "sample_sd": 0.0,
+              "min": 0,
+              "max": 0
+            },
+            "p95_matched_wait_seconds": {
+              "n": 5,
+              "mean": 28.6,
+              "sample_sd": 3.9115214431215892,
+              "min": 23,
+              "max": 32
+            },
+            "mean_pending_age_seconds": {
+              "n": 0,
+              "mean": null,
+              "sample_sd": null,
+              "min": null,
+              "max": null
+            },
+            "oldest_pending_age_seconds": {
+              "n": 0,
+              "mean": null,
+              "sample_sd": null,
+              "min": null,
+              "max": null
+            }
+          },
+          "pooled_metrics": {
+            "runs": 5,
+            "arrivals": 5000,
+            "teams": 1000,
+            "matched_players": 5000,
+            "match_rate": 1.0,
+            "matched_wait_sum_seconds": 45605,
+            "mean_matched_wait_seconds": 9.121,
+            "p95_matched_wait_seconds": 30,
+            "mean_team_pairwise_gap": 104.6944,
+            "pending_players": 0,
+            "pending_age_sum_seconds": 0,
+            "mean_pending_age_seconds": 0.0,
+            "observed_mean_queue_time_seconds": 9.121,
+            "oldest_pending_age_seconds": null,
+            "pending_by_role": {
+              "top": 0,
+              "jun": 0,
+              "mid": 0,
+              "adc": 0,
+              "sup": 0
+            }
+          }
+        },
+        {
+          "policy": "adaptive_30",
+          "raw_points": [
+            {
+              "seed": 1,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 8230,
+                "mean_matched_wait_seconds": 8.23,
+                "p95_matched_wait_seconds": 28,
+                "mean_team_pairwise_gap": 156.586,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 8.23,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 8275,
+                "mean_matched_wait_seconds": 8.275,
+                "p95_matched_wait_seconds": 26,
+                "mean_team_pairwise_gap": 153.523,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 8.275,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 7325,
+                "mean_matched_wait_seconds": 7.325,
+                "p95_matched_wait_seconds": 23,
+                "mean_team_pairwise_gap": 168.053,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 7.325,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 6505,
+                "mean_matched_wait_seconds": 6.505,
+                "p95_matched_wait_seconds": 21,
+                "mean_team_pairwise_gap": 152.161,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 6.505,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 200,
+                "matched_players": 1000,
+                "match_rate": 1.0,
+                "matched_wait_sum_seconds": 5345,
+                "mean_matched_wait_seconds": 5.345,
+                "p95_matched_wait_seconds": 17,
+                "mean_team_pairwise_gap": 135.505,
+                "pending_players": 0,
+                "pending_age_sum_seconds": 0,
+                "mean_pending_age_seconds": 0.0,
+                "observed_mean_queue_time_seconds": 5.345,
+                "oldest_pending_age_seconds": null,
+                "pending_by_role": {
+                  "top": 0,
+                  "jun": 0,
+                  "mid": 0,
+                  "adc": 0,
+                  "sup": 0
+                }
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": 7.136,
+              "sample_sd": 1.238519277201611,
+              "min": 5.345,
+              "max": 8.275
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": 153.1656,
+              "sample_sd": 11.687253347129943,
+              "min": 135.505,
+              "max": 168.053
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 7.136,
+              "sample_sd": 1.238519277201611,
+              "min": 5.345,
+              "max": 8.275
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 1.0,
+              "sample_sd": 0.0,
+              "min": 1.0,
+              "max": 1.0
+            },
+            "matched_players": {
+              "n": 5,
+              "mean": 1000,
+              "sample_sd": 0.0,
+              "min": 1000,
+              "max": 1000
+            },
+            "teams": {
+              "n": 5,
+              "mean": 200,
+              "sample_sd": 0.0,
+              "min": 200,
+              "max": 200
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 0,
+              "sample_sd": 0.0,
+              "min": 0,
+              "max": 0
+            },
+            "p95_matched_wait_seconds": {
+              "n": 5,
+              "mean": 23,
+              "sample_sd": 4.301162633521313,
+              "min": 17,
+              "max": 28
+            },
+            "mean_pending_age_seconds": {
+              "n": 0,
+              "mean": null,
+              "sample_sd": null,
+              "min": null,
+              "max": null
+            },
+            "oldest_pending_age_seconds": {
+              "n": 0,
+              "mean": null,
+              "sample_sd": null,
+              "min": null,
+              "max": null
+            }
+          },
+          "pooled_metrics": {
+            "runs": 5,
+            "arrivals": 5000,
+            "teams": 1000,
+            "matched_players": 5000,
+            "match_rate": 1.0,
+            "matched_wait_sum_seconds": 35680,
+            "mean_matched_wait_seconds": 7.136,
+            "p95_matched_wait_seconds": 24,
+            "mean_team_pairwise_gap": 153.1656,
+            "pending_players": 0,
+            "pending_age_sum_seconds": 0,
+            "mean_pending_age_seconds": 0.0,
+            "observed_mean_queue_time_seconds": 7.136,
+            "oldest_pending_age_seconds": null,
+            "pending_by_role": {
+              "top": 0,
+              "jun": 0,
+              "mid": 0,
+              "adc": 0,
+              "sup": 0
+            }
+          }
+        }
+      ],
+      "paired_deltas_vs_fifo": [
+        {
+          "policy": "adaptive_10",
+          "baseline": "role_fifo",
+          "raw_points": [
+            {
+              "seed": 1,
+              "deltas": {
+                "mean_matched_wait_seconds": 1.4650000000000007,
+                "mean_team_pairwise_gap": -231.80200000000002,
+                "observed_mean_queue_time_seconds": 1.4650000000000007,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 2,
+              "deltas": {
+                "mean_matched_wait_seconds": 2.335000000000001,
+                "mean_team_pairwise_gap": -222.563,
+                "observed_mean_queue_time_seconds": 2.335000000000001,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 3,
+              "deltas": {
+                "mean_matched_wait_seconds": 3.3100000000000005,
+                "mean_team_pairwise_gap": -213.036,
+                "observed_mean_queue_time_seconds": 3.3100000000000005,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 4,
+              "deltas": {
+                "mean_matched_wait_seconds": 2.3099999999999996,
+                "mean_team_pairwise_gap": -241.927,
+                "observed_mean_queue_time_seconds": 2.3099999999999996,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 5,
+              "deltas": {
+                "mean_matched_wait_seconds": 2.5650000000000004,
+                "mean_team_pairwise_gap": -226.50099999999998,
+                "observed_mean_queue_time_seconds": 2.5650000000000004,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": 2.3970000000000002,
+              "sample_sd": 0.6598920366241737,
+              "min": 1.4650000000000007,
+              "max": 3.3100000000000005
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": -227.1658,
+              "sample_sd": 10.731569675494821,
+              "min": -241.927,
+              "max": -213.036
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 2.3970000000000002,
+              "sample_sd": 0.6598920366241737,
+              "min": 1.4650000000000007,
+              "max": 3.3100000000000005
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 0.0,
+              "sample_sd": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 0,
+              "sample_sd": 0.0,
+              "min": 0,
+              "max": 0
+            }
+          }
+        },
+        {
+          "policy": "adaptive_30",
+          "baseline": "role_fifo",
+          "raw_points": [
+            {
+              "seed": 1,
+              "deltas": {
+                "mean_matched_wait_seconds": 0.4400000000000004,
+                "mean_team_pairwise_gap": -176.974,
+                "observed_mean_queue_time_seconds": 0.4400000000000004,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 2,
+              "deltas": {
+                "mean_matched_wait_seconds": 0.3000000000000007,
+                "mean_team_pairwise_gap": -177.29,
+                "observed_mean_queue_time_seconds": 0.3000000000000007,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 3,
+              "deltas": {
+                "mean_matched_wait_seconds": 0.6000000000000005,
+                "mean_team_pairwise_gap": -167.36700000000002,
+                "observed_mean_queue_time_seconds": 0.6000000000000005,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 4,
+              "deltas": {
+                "mean_matched_wait_seconds": 0.2599999999999998,
+                "mean_team_pairwise_gap": -191.118,
+                "observed_mean_queue_time_seconds": 0.2599999999999998,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 5,
+              "deltas": {
+                "mean_matched_wait_seconds": 0.45999999999999996,
+                "mean_team_pairwise_gap": -180.724,
+                "observed_mean_queue_time_seconds": 0.45999999999999996,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": 0.41200000000000025,
+              "sample_sd": 0.13608820668963212,
+              "min": 0.2599999999999998,
+              "max": 0.6000000000000005
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": -178.6946,
+              "sample_sd": 8.539719245970552,
+              "min": -191.118,
+              "max": -167.36700000000002
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 0.41200000000000025,
+              "sample_sd": 0.13608820668963212,
+              "min": 0.2599999999999998,
+              "max": 0.6000000000000005
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 0.0,
+              "sample_sd": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 0,
+              "sample_sd": 0.0,
+              "min": 0,
+              "max": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "support_scarce",
+      "policies": [
+        {
+          "policy": "role_fifo",
+          "raw_points": [
+            {
+              "seed": 1,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 22021,
+                "mean_matched_wait_seconds": 44.042,
+                "p95_matched_wait_seconds": 101,
+                "mean_team_pairwise_gap": 342.902,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 87409,
+                "mean_pending_age_seconds": 174.818,
+                "observed_mean_queue_time_seconds": 109.43,
+                "oldest_pending_age_seconds": 238,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 25619,
+                "mean_matched_wait_seconds": 51.238,
+                "p95_matched_wait_seconds": 113,
+                "mean_team_pairwise_gap": 324.034,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 88091,
+                "mean_pending_age_seconds": 176.182,
+                "observed_mean_queue_time_seconds": 113.71,
+                "oldest_pending_age_seconds": 236,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 20380,
+                "mean_matched_wait_seconds": 40.76,
+                "p95_matched_wait_seconds": 106,
+                "mean_team_pairwise_gap": 333.45,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 87685,
+                "mean_pending_age_seconds": 175.37,
+                "observed_mean_queue_time_seconds": 108.065,
+                "oldest_pending_age_seconds": 234,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 21800,
+                "mean_matched_wait_seconds": 43.6,
+                "p95_matched_wait_seconds": 102,
+                "mean_team_pairwise_gap": 345.99,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 87735,
+                "mean_pending_age_seconds": 175.47,
+                "observed_mean_queue_time_seconds": 109.535,
+                "oldest_pending_age_seconds": 237,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 20369,
+                "mean_matched_wait_seconds": 40.738,
+                "p95_matched_wait_seconds": 103,
+                "mean_team_pairwise_gap": 313.216,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 87421,
+                "mean_pending_age_seconds": 174.842,
+                "observed_mean_queue_time_seconds": 107.79,
+                "oldest_pending_age_seconds": 237,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": 44.0756,
+              "sample_sd": 4.291272398718124,
+              "min": 40.738,
+              "max": 51.238
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": 331.9184,
+              "sample_sd": 13.536420531292604,
+              "min": 313.216,
+              "max": 345.99
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 109.706,
+              "sample_sd": 2.3717804493670958,
+              "min": 107.79,
+              "max": 113.71
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 0.5,
+              "sample_sd": 0.0,
+              "min": 0.5,
+              "max": 0.5
+            },
+            "matched_players": {
+              "n": 5,
+              "mean": 500,
+              "sample_sd": 0.0,
+              "min": 500,
+              "max": 500
+            },
+            "teams": {
+              "n": 5,
+              "mean": 100,
+              "sample_sd": 0.0,
+              "min": 100,
+              "max": 100
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 500,
+              "sample_sd": 0.0,
+              "min": 500,
+              "max": 500
+            },
+            "p95_matched_wait_seconds": {
+              "n": 5,
+              "mean": 105,
+              "sample_sd": 4.847679857416329,
+              "min": 101,
+              "max": 113
+            },
+            "mean_pending_age_seconds": {
+              "n": 5,
+              "mean": 175.3364,
+              "sample_sd": 0.5583876789471528,
+              "min": 174.818,
+              "max": 176.182
+            },
+            "oldest_pending_age_seconds": {
+              "n": 5,
+              "mean": 236.4,
+              "sample_sd": 1.51657508881031,
+              "min": 234,
+              "max": 238
+            }
+          },
+          "pooled_metrics": {
+            "runs": 5,
+            "arrivals": 5000,
+            "teams": 500,
+            "matched_players": 2500,
+            "match_rate": 0.5,
+            "matched_wait_sum_seconds": 110189,
+            "mean_matched_wait_seconds": 44.0756,
+            "p95_matched_wait_seconds": 107,
+            "mean_team_pairwise_gap": 331.9184,
+            "pending_players": 2500,
+            "pending_age_sum_seconds": 438341,
+            "mean_pending_age_seconds": 175.3364,
+            "observed_mean_queue_time_seconds": 109.706,
+            "oldest_pending_age_seconds": 238,
+            "pending_by_role": {
+              "top": 625,
+              "jun": 625,
+              "mid": 625,
+              "adc": 625,
+              "sup": 0
+            }
+          }
+        },
+        {
+          "policy": "fixed_50",
+          "raw_points": [
+            {
+              "seed": 1,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 17267,
+                "mean_matched_wait_seconds": 34.534,
+                "p95_matched_wait_seconds": 112,
+                "mean_team_pairwise_gap": 18.432,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 92788,
+                "mean_pending_age_seconds": 185.576,
+                "observed_mean_queue_time_seconds": 110.055,
+                "oldest_pending_age_seconds": 290,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 20407,
+                "mean_matched_wait_seconds": 40.814,
+                "p95_matched_wait_seconds": 137,
+                "mean_team_pairwise_gap": 16.834,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 94048,
+                "mean_pending_age_seconds": 188.096,
+                "observed_mean_queue_time_seconds": 114.455,
+                "oldest_pending_age_seconds": 295,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 16204,
+                "mean_matched_wait_seconds": 32.408,
+                "p95_matched_wait_seconds": 118,
+                "mean_team_pairwise_gap": 19.876,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 93711,
+                "mean_pending_age_seconds": 187.422,
+                "observed_mean_queue_time_seconds": 109.915,
+                "oldest_pending_age_seconds": 303,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 17153,
+                "mean_matched_wait_seconds": 34.306,
+                "p95_matched_wait_seconds": 120,
+                "mean_team_pairwise_gap": 17.628,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 93267,
+                "mean_pending_age_seconds": 186.534,
+                "observed_mean_queue_time_seconds": 110.42,
+                "oldest_pending_age_seconds": 296,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 16059,
+                "mean_matched_wait_seconds": 32.118,
+                "p95_matched_wait_seconds": 110,
+                "mean_team_pairwise_gap": 20.25,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 92551,
+                "mean_pending_age_seconds": 185.102,
+                "observed_mean_queue_time_seconds": 108.61,
+                "oldest_pending_age_seconds": 297,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": 34.836,
+              "sample_sd": 3.513947068468732,
+              "min": 32.118,
+              "max": 40.814
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": 18.604,
+              "sample_sd": 1.452786976813876,
+              "min": 16.834,
+              "max": 20.25
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 110.691,
+              "sample_sd": 2.2123725952018103,
+              "min": 108.61,
+              "max": 114.455
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 0.5,
+              "sample_sd": 0.0,
+              "min": 0.5,
+              "max": 0.5
+            },
+            "matched_players": {
+              "n": 5,
+              "mean": 500,
+              "sample_sd": 0.0,
+              "min": 500,
+              "max": 500
+            },
+            "teams": {
+              "n": 5,
+              "mean": 100,
+              "sample_sd": 0.0,
+              "min": 100,
+              "max": 100
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 500,
+              "sample_sd": 0.0,
+              "min": 500,
+              "max": 500
+            },
+            "p95_matched_wait_seconds": {
+              "n": 5,
+              "mean": 119.4,
+              "sample_sd": 10.667708282475669,
+              "min": 110,
+              "max": 137
+            },
+            "mean_pending_age_seconds": {
+              "n": 5,
+              "mean": 186.546,
+              "sample_sd": 1.2445939096749599,
+              "min": 185.102,
+              "max": 188.096
+            },
+            "oldest_pending_age_seconds": {
+              "n": 5,
+              "mean": 296.2,
+              "sample_sd": 4.658325879540846,
+              "min": 290,
+              "max": 303
+            }
+          },
+          "pooled_metrics": {
+            "runs": 5,
+            "arrivals": 5000,
+            "teams": 500,
+            "matched_players": 2500,
+            "match_rate": 0.5,
+            "matched_wait_sum_seconds": 87090,
+            "mean_matched_wait_seconds": 34.836,
+            "p95_matched_wait_seconds": 122,
+            "mean_team_pairwise_gap": 18.604,
+            "pending_players": 2500,
+            "pending_age_sum_seconds": 466365,
+            "mean_pending_age_seconds": 186.546,
+            "observed_mean_queue_time_seconds": 110.691,
+            "oldest_pending_age_seconds": 303,
+            "pending_by_role": {
+              "top": 625,
+              "jun": 625,
+              "mid": 625,
+              "adc": 625,
+              "sup": 0
+            }
+          }
+        },
+        {
+          "policy": "adaptive_10",
+          "raw_points": [
+            {
+              "seed": 1,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 17347,
+                "mean_matched_wait_seconds": 34.694,
+                "p95_matched_wait_seconds": 118,
+                "mean_team_pairwise_gap": 116.304,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 92193,
+                "mean_pending_age_seconds": 184.386,
+                "observed_mean_queue_time_seconds": 109.54,
+                "oldest_pending_age_seconds": 272,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 19632,
+                "mean_matched_wait_seconds": 39.264,
+                "p95_matched_wait_seconds": 137,
+                "mean_team_pairwise_gap": 131.42,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 94198,
+                "mean_pending_age_seconds": 188.396,
+                "observed_mean_queue_time_seconds": 113.83,
+                "oldest_pending_age_seconds": 273,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 16441,
+                "mean_matched_wait_seconds": 32.882,
+                "p95_matched_wait_seconds": 123,
+                "mean_team_pairwise_gap": 111.532,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 92094,
+                "mean_pending_age_seconds": 184.188,
+                "observed_mean_queue_time_seconds": 108.535,
+                "oldest_pending_age_seconds": 266,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 16893,
+                "mean_matched_wait_seconds": 33.786,
+                "p95_matched_wait_seconds": 121,
+                "mean_team_pairwise_gap": 106.548,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 92722,
+                "mean_pending_age_seconds": 185.444,
+                "observed_mean_queue_time_seconds": 109.615,
+                "oldest_pending_age_seconds": 264,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 16115,
+                "mean_matched_wait_seconds": 32.23,
+                "p95_matched_wait_seconds": 118,
+                "mean_team_pairwise_gap": 101.618,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 91925,
+                "mean_pending_age_seconds": 183.85,
+                "observed_mean_queue_time_seconds": 108.04,
+                "oldest_pending_age_seconds": 266,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": 34.5712,
+              "sample_sd": 2.78337047480209,
+              "min": 32.23,
+              "max": 39.264
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": 113.4844,
+              "sample_sd": 11.42773874395105,
+              "min": 101.618,
+              "max": 131.42
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 109.912,
+              "sample_sd": 2.290078055438284,
+              "min": 108.04,
+              "max": 113.83
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 0.5,
+              "sample_sd": 0.0,
+              "min": 0.5,
+              "max": 0.5
+            },
+            "matched_players": {
+              "n": 5,
+              "mean": 500,
+              "sample_sd": 0.0,
+              "min": 500,
+              "max": 500
+            },
+            "teams": {
+              "n": 5,
+              "mean": 100,
+              "sample_sd": 0.0,
+              "min": 100,
+              "max": 100
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 500,
+              "sample_sd": 0.0,
+              "min": 500,
+              "max": 500
+            },
+            "p95_matched_wait_seconds": {
+              "n": 5,
+              "mean": 123.4,
+              "sample_sd": 7.893034904268446,
+              "min": 118,
+              "max": 137
+            },
+            "mean_pending_age_seconds": {
+              "n": 5,
+              "mean": 185.25279999999998,
+              "sample_sd": 1.8553471912286363,
+              "min": 183.85,
+              "max": 188.396
+            },
+            "oldest_pending_age_seconds": {
+              "n": 5,
+              "mean": 268.2,
+              "sample_sd": 4.024922359499621,
+              "min": 264,
+              "max": 273
+            }
+          },
+          "pooled_metrics": {
+            "runs": 5,
+            "arrivals": 5000,
+            "teams": 500,
+            "matched_players": 2500,
+            "match_rate": 0.5,
+            "matched_wait_sum_seconds": 86428,
+            "mean_matched_wait_seconds": 34.5712,
+            "p95_matched_wait_seconds": 123,
+            "mean_team_pairwise_gap": 113.4844,
+            "pending_players": 2500,
+            "pending_age_sum_seconds": 463132,
+            "mean_pending_age_seconds": 185.2528,
+            "observed_mean_queue_time_seconds": 109.912,
+            "oldest_pending_age_seconds": 273,
+            "pending_by_role": {
+              "top": 625,
+              "jun": 625,
+              "mid": 625,
+              "adc": 625,
+              "sup": 0
+            }
+          }
+        },
+        {
+          "policy": "adaptive_30",
+          "raw_points": [
+            {
+              "seed": 1,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 17243,
+                "mean_matched_wait_seconds": 34.486,
+                "p95_matched_wait_seconds": 118,
+                "mean_team_pairwise_gap": 124.414,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 92212,
+                "mean_pending_age_seconds": 184.424,
+                "observed_mean_queue_time_seconds": 109.455,
+                "oldest_pending_age_seconds": 274,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 19278,
+                "mean_matched_wait_seconds": 38.556,
+                "p95_matched_wait_seconds": 133,
+                "mean_team_pairwise_gap": 130.502,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 94442,
+                "mean_pending_age_seconds": 188.884,
+                "observed_mean_queue_time_seconds": 113.72,
+                "oldest_pending_age_seconds": 276,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 15150,
+                "mean_matched_wait_seconds": 30.3,
+                "p95_matched_wait_seconds": 121,
+                "mean_team_pairwise_gap": 131.508,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 93090,
+                "mean_pending_age_seconds": 186.18,
+                "observed_mean_queue_time_seconds": 108.24,
+                "oldest_pending_age_seconds": 267,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 16280,
+                "mean_matched_wait_seconds": 32.56,
+                "p95_matched_wait_seconds": 121,
+                "mean_team_pairwise_gap": 138.476,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 93280,
+                "mean_pending_age_seconds": 186.56,
+                "observed_mean_queue_time_seconds": 109.56,
+                "oldest_pending_age_seconds": 268,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "metrics": {
+                "runs": 1,
+                "arrivals": 1000,
+                "teams": 100,
+                "matched_players": 500,
+                "match_rate": 0.5,
+                "matched_wait_sum_seconds": 15549,
+                "mean_matched_wait_seconds": 31.098,
+                "p95_matched_wait_seconds": 113,
+                "mean_team_pairwise_gap": 109.628,
+                "pending_players": 500,
+                "pending_age_sum_seconds": 92346,
+                "mean_pending_age_seconds": 184.692,
+                "observed_mean_queue_time_seconds": 107.895,
+                "oldest_pending_age_seconds": 268,
+                "pending_by_role": {
+                  "top": 125,
+                  "jun": 125,
+                  "mid": 125,
+                  "adc": 125,
+                  "sup": 0
+                }
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": 33.4,
+              "sample_sd": 3.293119190068891,
+              "min": 30.3,
+              "max": 38.556
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": 126.9056,
+              "sample_sd": 10.870991987854651,
+              "min": 109.628,
+              "max": 138.476
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 109.774,
+              "sample_sd": 2.3239121110747725,
+              "min": 107.895,
+              "max": 113.72
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 0.5,
+              "sample_sd": 0.0,
+              "min": 0.5,
+              "max": 0.5
+            },
+            "matched_players": {
+              "n": 5,
+              "mean": 500,
+              "sample_sd": 0.0,
+              "min": 500,
+              "max": 500
+            },
+            "teams": {
+              "n": 5,
+              "mean": 100,
+              "sample_sd": 0.0,
+              "min": 100,
+              "max": 100
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 500,
+              "sample_sd": 0.0,
+              "min": 500,
+              "max": 500
+            },
+            "p95_matched_wait_seconds": {
+              "n": 5,
+              "mean": 121.2,
+              "sample_sd": 7.362064927722384,
+              "min": 113,
+              "max": 133
+            },
+            "mean_pending_age_seconds": {
+              "n": 5,
+              "mean": 186.148,
+              "sample_sd": 1.7852574044097873,
+              "min": 184.424,
+              "max": 188.884
+            },
+            "oldest_pending_age_seconds": {
+              "n": 5,
+              "mean": 270.6,
+              "sample_sd": 4.09878030638384,
+              "min": 267,
+              "max": 276
+            }
+          },
+          "pooled_metrics": {
+            "runs": 5,
+            "arrivals": 5000,
+            "teams": 500,
+            "matched_players": 2500,
+            "match_rate": 0.5,
+            "matched_wait_sum_seconds": 83500,
+            "mean_matched_wait_seconds": 33.4,
+            "p95_matched_wait_seconds": 122,
+            "mean_team_pairwise_gap": 126.9056,
+            "pending_players": 2500,
+            "pending_age_sum_seconds": 465370,
+            "mean_pending_age_seconds": 186.148,
+            "observed_mean_queue_time_seconds": 109.774,
+            "oldest_pending_age_seconds": 276,
+            "pending_by_role": {
+              "top": 625,
+              "jun": 625,
+              "mid": 625,
+              "adc": 625,
+              "sup": 0
+            }
+          }
+        }
+      ],
+      "paired_deltas_vs_fifo": [
+        {
+          "policy": "adaptive_10",
+          "baseline": "role_fifo",
+          "raw_points": [
+            {
+              "seed": 1,
+              "deltas": {
+                "mean_matched_wait_seconds": -9.347999999999999,
+                "mean_team_pairwise_gap": -226.59799999999998,
+                "observed_mean_queue_time_seconds": 0.10999999999999943,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 2,
+              "deltas": {
+                "mean_matched_wait_seconds": -11.973999999999997,
+                "mean_team_pairwise_gap": -192.614,
+                "observed_mean_queue_time_seconds": 0.12000000000000455,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 3,
+              "deltas": {
+                "mean_matched_wait_seconds": -7.878,
+                "mean_team_pairwise_gap": -221.918,
+                "observed_mean_queue_time_seconds": 0.46999999999999886,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 4,
+              "deltas": {
+                "mean_matched_wait_seconds": -9.814,
+                "mean_team_pairwise_gap": -239.442,
+                "observed_mean_queue_time_seconds": 0.0799999999999983,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 5,
+              "deltas": {
+                "mean_matched_wait_seconds": -8.508000000000003,
+                "mean_team_pairwise_gap": -211.598,
+                "observed_mean_queue_time_seconds": 0.25,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": -9.5044,
+              "sample_sd": 1.5698110714350293,
+              "min": -11.973999999999997,
+              "max": -7.878
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": -218.434,
+              "sample_sd": 17.5608122818963,
+              "min": -239.442,
+              "max": -192.614
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 0.20600000000000024,
+              "sample_sd": 0.16133815419794473,
+              "min": 0.0799999999999983,
+              "max": 0.46999999999999886
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 0.0,
+              "sample_sd": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 0,
+              "sample_sd": 0.0,
+              "min": 0,
+              "max": 0
+            }
+          }
+        },
+        {
+          "policy": "adaptive_30",
+          "baseline": "role_fifo",
+          "raw_points": [
+            {
+              "seed": 1,
+              "deltas": {
+                "mean_matched_wait_seconds": -9.556000000000004,
+                "mean_team_pairwise_gap": -218.488,
+                "observed_mean_queue_time_seconds": 0.024999999999991473,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 2,
+              "deltas": {
+                "mean_matched_wait_seconds": -12.682000000000002,
+                "mean_team_pairwise_gap": -193.53199999999998,
+                "observed_mean_queue_time_seconds": 0.010000000000005116,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 3,
+              "deltas": {
+                "mean_matched_wait_seconds": -10.459999999999997,
+                "mean_team_pairwise_gap": -201.94199999999998,
+                "observed_mean_queue_time_seconds": 0.17499999999999716,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 4,
+              "deltas": {
+                "mean_matched_wait_seconds": -11.04,
+                "mean_team_pairwise_gap": -207.514,
+                "observed_mean_queue_time_seconds": 0.025000000000005684,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            },
+            {
+              "seed": 5,
+              "deltas": {
+                "mean_matched_wait_seconds": -9.64,
+                "mean_team_pairwise_gap": -203.58800000000002,
+                "observed_mean_queue_time_seconds": 0.10499999999998977,
+                "match_rate": 0.0,
+                "pending_players": 0
+              }
+            }
+          ],
+          "across_run_summary": {
+            "mean_matched_wait_seconds": {
+              "n": 5,
+              "mean": -10.675600000000001,
+              "sample_sd": 1.2777796367136234,
+              "min": -12.682000000000002,
+              "max": -9.556000000000004
+            },
+            "mean_team_pairwise_gap": {
+              "n": 5,
+              "mean": -205.0128,
+              "sample_sd": 9.09815438426938,
+              "min": -218.488,
+              "max": -193.53199999999998
+            },
+            "observed_mean_queue_time_seconds": {
+              "n": 5,
+              "mean": 0.06799999999999784,
+              "sample_sd": 0.07049822692805523,
+              "min": 0.010000000000005116,
+              "max": 0.17499999999999716
+            },
+            "match_rate": {
+              "n": 5,
+              "mean": 0.0,
+              "sample_sd": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "pending_players": {
+              "n": 5,
+              "mean": 0,
+              "sample_sd": 0.0,
+              "min": 0,
+              "max": 0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

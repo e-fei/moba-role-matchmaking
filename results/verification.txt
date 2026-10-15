@@ -1,0 +1,14 @@
+Verification summary
+
+C++17 build: Apple Clang 21, -Wall -Wextra -Wpedantic, no warnings.
+Correctness: 1,437 selected teams match an independent exhaustive oracle across 1,000 seeded random queues, including exact ties.
+CLI regression: five malformed commands rejected without side effects.
+AddressSanitizer and UndefinedBehaviorSanitizer: tests pass without diagnostics.
+Simulation: 40 runs, 8 pooled populations; exact population/wait accounting; two outputs byte-identical.
+PDF revision (14 October 2026): 6 US Letter pages (5 main + 1 appendix). Embedded searchable text/math fonts; original vector figures; page numbering and text bounds checked.
+The optional extension passes 3,822 independent exhaustive selections across 2,100 queues, including the local gap-loss bound. Lambda zero matches exact team IDs/times on 300 queues and ten full streams. Optimized and address/undefined sanitizer outputs agree. See research/validation.txt.
+The waiting-experiment target was verified on 11 October 2026. No matching logic or experiment data changed in the 14 October visual revision.
+All six final PDF pages were rendered and visually inspected; glyph and cross-reference checks pass. No NUL or replacement glyphs and no raster images occur in the report.
+Code, baseline and extension data, benchmark data, and tests match the previous submission byte for byte. The two new charts use the saved pooled metrics; plotting range and marker-separation assertions pass. Pale-blue fills and all bar charts have been removed. Figure captions and statistical reporting conventions agree with the new plots.
+
+Timing results are local synthetic microbenchmarks; no production-performance or grade guarantee is implied.

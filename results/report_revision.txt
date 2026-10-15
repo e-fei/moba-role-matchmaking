@@ -1,0 +1,20 @@
+Report revision: 15 October 2026
+
+Six US Letter pages: five main pages plus one reproducibility appendix.
+Preserved two-column typography, margins, mathematical content, and tabular results.
+Replaced the blue palette with burgundy, ochre, charcoal, and warm gray.
+Figure 1: original role emblems and band lens with neutral shading and burgundy anchor emphasis.
+Figure 2: two objective-space panels, four pooled outcomes each, directly labeled. The two wait-axis ranges differ and are disclosed; the gap axis is shared. No seed clouds, uncertainty bands, policy-connecting lines, or asserted Pareto frontier.
+Figure 3: four dumbbell comparisons of completed-player waits and all-arrival observed queue residence. Connectors compare different population means, not additive time components.
+Figures 2 and 3 now both use pooled metrics matching Table 3. Per-seed results and run-level standard deviations remain in the data package. Captions and reporting conventions were updated.
+All figures remain vector artwork and are also provided as PNG previews.
+
+Algorithm sources, baseline experiments, optional extension results, benchmark data, and tests are byte-identical to the previous submission.
+The 11 October extension remains unchanged: capped age reward, exact 32-state DP, and a local score-loss bound. Existing synthetic-workload limitations are retained.
+
+Design references and rationale: report/figure_design_notes.md
+Archived previous PDF: output/archive/MOBA_Matchmaking_Report_v3.pdf
+This is a conference-inspired homework report, not a conference submission.
+
+Open-source release: https://github.com/e-fei/moba-role-matchmaking
+The title page displays the public repository URL as a clickable, underlined link and declares the implementation open source under the MIT License. repository.json supplies the single canonical URL.

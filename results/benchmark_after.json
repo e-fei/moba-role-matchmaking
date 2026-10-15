@@ -1,0 +1,5 @@
+{
+  "equal_scores_500": {"median_ms": 1.919, "min_ms": 1.806, "max_ms": 1.955},
+  "mixed_scores_500": {"median_ms": 3.179, "min_ms": 2.988, "max_ms": 3.357},
+  "missing_role_5000_100_ticks": {"median_ms": 0.038, "min_ms": 0.038, "max_ms": 0.046}
+}
